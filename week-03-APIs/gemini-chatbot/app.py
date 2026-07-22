@@ -15,7 +15,8 @@ while True:
         print("Thank You. See you soon again!")
         break
     try:
-        response = chat.send_message(prompt)
-        print(response.text)
+        for chunk in chat.send_message_stream(prompt):
+            print(chunk.text, end="",flush=True)
+        print()    
     except Exception as e:
         print(f"Error:{e}")
